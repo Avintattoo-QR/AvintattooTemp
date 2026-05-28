@@ -7,7 +7,6 @@
     <style>
         /* ===================================
            CSS RESET & WORDPRESS POLYFILLS
-           (הגדרות בסיס שמחליפות את מערכת וורדפרס)
            =================================== */
         * { box-sizing: border-box; }
         body { margin: 0; padding: 0; overflow-x: hidden; }
@@ -27,15 +26,11 @@
         /*
          * ===================================
          *  Avintattoo - Master Stylesheet
-         *  Version: 26.9 (Extreme Native Controls Fix)
          *  Theme: Gold, Black & Clean White
          *  Font: Courier New
          * ===================================
         */
-        /* --- 1. Global Styles & Typography --- */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Courier New', Courier, monospace !important;
@@ -89,11 +84,13 @@
         @keyframes flow {
             from { background-position: 0 50%, 50% 0; }
             to { background-position: 100% 50%, 50% 100%; }
-        }/* באנר צף - הודעות וקביעת תורים */
+        }
+
+        /* באנר צף - הודעות וקביעת תורים */
         .sticky-header-banner {
             position: sticky;
             top: 0;
-            z-index: 9999; /* מבטיח שזה יישאר מעל כל שאר האתר */
+            z-index: 9999;
             background-color: #111111;
             color: #d4af37;
             text-align: center;
@@ -123,7 +120,7 @@
             font-weight: bold;
             display: inline-flex;
             align-items: center;
-            text-decoration: none;
+            text-decoration: none !important;
             transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(37, 211, 102, 0.3);
         }
@@ -131,6 +128,7 @@
         .banner-wa-btn:hover {
             background-color: #1ebe57;
             transform: scale(1.05);
+            color: #ffffff !important;
         }
 
         /* התאמה למסכים גדולים (מחשב) */
@@ -144,26 +142,20 @@
                 font-size: 1.1rem;
             }
         }
-        }
 
         /* --- BUTTONS STYLING --- */
-        /* --- תיקון צבע הכפתורים ללבן תמיד --- */
-        a.wp-block-button__link,
-        a.wp-block-button__link:link,
-        a.wp-block-button__link:visited,
-        a.wp-block-button__link:active,
-        .product-card a.wp-block-button__link {
-            color: #ffffff !important;
-            text-decoration: none !important;
-        }
-        .wp-block-button__link {
+        .wp-block-button__link,
+        .wp-block-button__link:link,
+        .wp-block-button__link:visited,
+        .wp-block-button__link:active {
             font-family: 'Courier New', Courier, monospace !important;
             transition: all .3s ease;
             background-color: #111111 !important;
-            color: #ffffff !important;
+            color: #ffffff !important; /* תמיד לבן */
             font-weight: bold !important;
             border: none !important;
             text-transform: uppercase;
+            text-decoration: none !important; /* מונע קו תחתון של לינקים */
         }
 
         .wp-block-button__link:hover {
@@ -208,20 +200,14 @@
             font-size: .85rem;
         }
 
-        .product-card .wp-block-button__link {
-            background-color: #111111 !important;
-        }
-
-        .product-card .wp-block-button__link:hover {
-            background-color: #d4af37 !important;
-        }
-
         .product-image-wrapper img {
             width: 100%;
         }
     </style>
 </head>
-<body><!-- באנר צף (Sticky) לשיפוצים וקביעת תורים -->
+<body>
+
+<!-- באנר צף (Sticky) לשיפוצים וקביעת תורים -->
 <div class="sticky-header-banner">
     <div class="banner-text">
         האתר בשיפוצים 🛠️ בינתיים אתם מוזמנים ליהנות מקולקציית העגילים!
