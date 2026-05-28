@@ -3,26 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>בוטיק פירסינג | Avintattoo</title>
+    <title>בוטיק פירסינג בסטודיו | Avintattoo</title>
     
-    <!-- ייבוא פונט מודרני ונקי בדומה לשופיפיי -->
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- פונט מודרני מותאם לאתרי איקומרס יוקרתיים -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
+        /* ===================================
+           SHOPIFY PRESTIGE THEME VARIABLES
+           (העתק מדויק מהקוד שסיפקת)
+           =================================== */
+        :root {
+            --heading-font-family: 'Assistant', Helvetica, Arial, sans-serif;
+            --heading-font-weight: 400;
+            --heading-letter-spacing: 0.18em;
+            
+            --text-font-family: 'Assistant', Helvetica, Arial, sans-serif;
+            --text-color: #1c1c1c;
+            --text-color-light: #666666;
+            
+            --button-background: #1c1c1c;
+            --button-text-color: #ffffff;
+            --button-letter-spacing: 0.18em;
+            --button-border-radius: 4px;
+            
+            --background: #ffffff;
+            --container-max-width: 1400px;
+        }
+
         /* ===================================
            RESET & BASE
            =================================== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body { 
-            font-family: 'Assistant', sans-serif; /* פונט מודרני ונקי */
-            background-color: #ffffff; 
-            color: #1c1c1c; 
+            font-family: var(--text-font-family);
+            background-color: var(--background); 
+            color: var(--text-color); 
             overflow-x: hidden; 
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
+
         img { max-width: 100%; height: auto; display: block; }
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none !important; color: inherit; }
 
         /* ===================================
            STICKY ANNOUNCEMENT BAR
@@ -31,37 +55,37 @@
             position: sticky;
             top: 0;
             z-index: 9999;
-            background-color: #1c1c1c; /* שחור מט */
-            color: #ffffff;
+            background-color: var(--button-background);
+            color: var(--button-text-color);
             text-align: center;
             padding: 10px 15px;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .announcement-bar a.whatsapp-link {
+        .announcement-bar .whatsapp-link {
             color: #25d366;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            letter-spacing: 0;
             transition: opacity 0.3s ease;
         }
 
-        .announcement-bar a.whatsapp-link:hover {
-            opacity: 0.8;
-        }
+        .announcement-bar .whatsapp-link:hover { opacity: 0.8; }
 
         @media (min-width: 768px) {
             .announcement-bar {
                 flex-direction: row;
                 justify-content: space-between;
                 padding: 12px 40px;
+                font-size: 0.95rem;
             }
         }
 
@@ -70,19 +94,20 @@
            =================================== */
         .collection-header {
             text-align: center;
-            padding: 50px 20px 40px;
+            padding: 60px 20px 40px;
         }
 
         .collection-title {
-            font-size: 2.2rem;
-            font-weight: 400;
-            letter-spacing: 2px;
+            font-family: var(--heading-font-family);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: var(--heading-font-weight);
+            letter-spacing: 0.1em;
             margin-bottom: 15px;
             text-transform: uppercase;
         }
 
         .collection-description {
-            color: #666666;
+            color: var(--text-color-light);
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
@@ -90,113 +115,116 @@
         }
 
         /* ===================================
-           PRODUCT GRID (Shopify Style)
+           PRODUCT GRID (Shopify Prestige Style)
            =================================== */
         .page-width {
-            max-width: 1400px;
+            max-width: var(--container-max-width);
             margin: 0 auto;
-            padding: 0 20px 60px;
+            padding: 0 20px 80px;
         }
 
         .product-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            column-gap: 20px;
+            row-gap: 40px;
         }
 
         @media (min-width: 768px) {
             .product-grid {
                 grid-template-columns: repeat(4, 1fr);
-                gap: 30px;
+                column-gap: 30px;
+                row-gap: 50px;
             }
         }
 
         .product-card {
             display: flex;
             flex-direction: column;
-            group: product;
-            margin-bottom: 20px;
+            text-align: center;
         }
 
         .product-image-container {
             position: relative;
-            overflow: hidden;
-            border-radius: 4px;
+            overflow: hidden; /* חותך את התמונה בזום */
+            background-color: #f8f8f8;
+            margin-bottom: 20px;
             aspect-ratio: 1 / 1;
-            background-color: #f9f9f9;
-            margin-bottom: 15px;
         }
 
+        /* === האפקט של שופיפיי - זום עדין ואיטי === */
         .product-image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.7s ease;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* אפקט זום יוקרתי בריחוף */
         .product-card:hover .product-image-container img {
-            transform: scale(1.08);
+            transform: scale(1.06);
         }
 
         .product-info {
-            text-align: center;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+            padding: 0 10px;
         }
 
         .product-title {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 5px;
-            color: #1c1c1c;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            letter-spacing: 0.02em;
         }
 
-        .product-material {
+        .product-meta {
             font-size: 0.9rem;
-            color: #666666;
-            margin-bottom: 5px;
+            color: var(--text-color-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
         }
 
         .product-sku {
+            display: block;
             font-size: 0.8rem;
-            color: #999999;
-            margin-bottom: 15px;
-            font-family: monospace; /* למראה מק"ט מקצועי */
+            color: #999;
+            letter-spacing: 1px;
+            margin-top: 2px;
         }
 
         .spacer { flex-grow: 1; }
 
-        /* כפתור הוספה לסל / וואטסאפ */
-        .btn-add-to-cart {
-            display: block;
+        /* === כפתורים בסגנון PRESTIGE === */
+        .btn {
+            display: inline-block;
             width: 100%;
-            background-color: #1c1c1c; /* שחור שופיפיי */
-            color: #ffffff !important;
+            background-color: var(--button-background) !important;
+            color: var(--button-text-color) !important;
             text-align: center;
-            padding: 12px 0;
-            font-size: 0.95rem;
+            padding: 14px 20px;
+            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 1px;
-            border-radius: 2px;
+            letter-spacing: var(--button-letter-spacing); /* ריווח אותיות יוקרתי */
+            border-radius: var(--button-border-radius);
             transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid #1c1c1c;
+            border: 1px solid var(--button-background);
+            text-transform: uppercase;
         }
 
-        .btn-add-to-cart:hover {
-            background-color: #ffffff;
-            color: #1c1c1c !important;
+        .btn:hover {
+            background-color: #333333 !important;
+            border-color: #333333;
         }
-
     </style>
 </head>
 <body>
 
 <!-- באנר עליון (Announcement Bar) -->
 <div class="announcement-bar">
-    <div>האתר בשיפוצים 🛠️ בינתיים אתם מוזמנים ליהנות מהקולקציה החדשה</div>
+    <div class="banner-text">האתר בשיפוצים 🛠️ בינתיים אתם מוזמנים ליהנות מהקולקציה החדשה</div>
     <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לקבוע תור / לברר פרטים נוספים." class="whatsapp-link" target="_blank">
         לקביעת תור ב-WhatsApp: 053-7239660
     </a>
@@ -204,8 +232,8 @@
 
 <!-- כותרת האתר -->
 <div class="collection-header">
-    <h1 class="collection-title">קולקציית תכשיטים</h1>
-    <p class="collection-description">תכשיטים ייחודיים בסטנדרט רפואי הגבוה ביותר לסטודיו ולפירסינג.<br>לפרטים והזמנה לחצו על הפריט הרצוי.</p>
+    <h1 class="collection-title">בוטיק פירסינג בסטודיו</h1>
+    <p class="collection-description">קולקציית תכשיטים ייחודית בסטנדרט רפואי<br>לפרטים והזמנה לחצו על הפריט הרצוי</p>
 </div>
 
 <!-- גריד מוצרים -->
@@ -219,10 +247,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">לוטוס אבן עם שרשרת</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1052</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1052</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס אבן עם שרשרת (מק'ט 1052)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס אבן עם שרשרת (מק'ט 1052)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -233,10 +263,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">לאברט זירקון</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1023</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1023</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לאברט זירקון (מק'ט 1023)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לאברט זירקון (מק'ט 1023)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -247,10 +279,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">פרח מרקיזות</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1071</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1071</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: פרח מרקיזות (מק'ט 1071)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: פרח מרקיזות (מק'ט 1071)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -261,10 +295,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">טיפה נופלת 4מ"מ</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1054</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1054</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה נופלת (מק'ט 1054)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה נופלת (מק'ט 1054)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -275,10 +311,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">משובץ גיאומטרי</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1070</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1070</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: משובץ גיאומטרי (מק'ט 1070)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: משובץ גיאומטרי (מק'ט 1070)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -289,10 +327,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">מרקיזות בשורה</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1040</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1040</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזות בשורה (מק'ט 1040)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזות בשורה (מק'ט 1040)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -303,10 +343,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">הליקס מניפה</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1050</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1050</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: הליקס מניפה (מק'ט 1050)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: הליקס מניפה (מק'ט 1050)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -317,10 +359,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">פרפר עדין 4מ"מ</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1022</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1022</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: פרפר עדין 4מ&quot;מ (מק'ט 1022)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: פרפר עדין 4מ&quot;מ (מק'ט 1022)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -331,10 +375,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">טיפה זירקון</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1051</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1051</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה זירקון (מק'ט 1051)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה זירקון (מק'ט 1051)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -345,10 +391,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">מרקיזות זהב</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1063</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1063</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזות זהב (מק'ט 1063)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזות זהב (מק'ט 1063)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -359,10 +407,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">לאברט נחש</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1031</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1031</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לאברט נחש (מק'ט 1031)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לאברט נחש (מק'ט 1031)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -373,10 +423,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">לוטוס חלק</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1019</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1019</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס חלק (מק'ט 1019)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס חלק (מק'ט 1019)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -387,10 +439,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">ענף משובץ ירוק</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1033</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1033</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: ענף משובץ ירוק (מק'ט 1033)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: ענף משובץ ירוק (מק'ט 1033)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -401,10 +455,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">עיגול זהב חרוט (4 מ"מ)</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1016</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1016</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: עיגול זהב חרוט (4 מ&quot;מ) (מק'ט 1016)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: עיגול זהב חרוט (4 מ&quot;מ) (מק'ט 1016)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -415,10 +471,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">קליקר כדורים</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1034</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1034</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: קליקר כדורים (מק'ט 1034)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: קליקר כדורים (מק'ט 1034)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -429,10 +487,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">הליקס שרשרת פרח</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1053</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1053</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: הליקס שרשרת פרח (מק'ט 1053)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: הליקס שרשרת פרח (מק'ט 1053)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -443,10 +503,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">מרקיזה זויות</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1036</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1036</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזה זית (מק'ט 1036)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזה זית (מק'ט 1036)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -457,10 +519,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">טיפה אופל</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1055</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1055</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה אופל (מק'ט 1055)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה אופל (מק'ט 1055)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -471,10 +535,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">חרב מיניאטורית</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1066</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1066</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: חרב מיניאטורית (מק'ט 1066)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: חרב מיניאטורית (מק'ט 1066)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -485,10 +551,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">לוטוס אבן שחורה</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1021</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1021</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס אבן שחורה (מק'ט 1021)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס אבן שחורה (מק'ט 1021)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -499,10 +567,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">מעויין זירקונים</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1020</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1020</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מעויין זירקונים (מק'ט 1020)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מעויין זירקונים (מק'ט 1020)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -513,10 +583,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">זירקון תלוי</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1042</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1042</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: זירקון תלוי (מק'ט 1042)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: זירקון תלוי (מק'ט 1042)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -527,10 +599,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">עגיל דובון</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1032</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1032</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: עגיל דובון (מק'ט 1032)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: עגיל דובון (מק'ט 1032)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -541,10 +615,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">עיגול חרוט (4 מ"מ)</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1017</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1017</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: עיגול חרוט (4 מ&quot;מ) (מק'ט 1017)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: עיגול חרוט (4 מ&quot;מ) (מק'ט 1017)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -555,10 +631,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">שורה 5 זירקונים</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1038</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1038</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: שורה 5 זירקונים (מק'ט 1038)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: שורה 5 זירקונים (מק'ט 1038)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -569,10 +647,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">טיפה שחורה (3 מ"מ)</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1015</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1015</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה שחורה (3 מ&quot;מ) (מק'ט 1015)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה שחורה (3 מ&quot;מ) (מק'ט 1015)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -583,10 +663,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">נחש מעוצב</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1030</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1030</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: נחש מעוצב (מק'ט 1030)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: נחש מעוצב (מק'ט 1030)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -597,10 +679,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">זירקון סוליטר (3.5 מ"מ)</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1024</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1024</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: זירקון סוליטר (3.5 מ&quot;מ) (מק'ט 1024)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: זירקון סוליטר (3.5 מ&quot;מ) (מק'ט 1024)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -611,10 +695,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">פרפר זירקונים</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1069</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1069</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: פרפר זירקונים (מק'ט 1069)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: פרפר זירקונים (מק'ט 1069)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -625,10 +711,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">שורה דקה משובצת</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1039</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1039</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: שורה דקה משובצת (מק'ט 1039)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: שורה דקה משובצת (מק'ט 1039)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -639,10 +727,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">טיפה תלויה זירקון</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1041</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1041</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה תלויה זירקון (מק'ט 1041)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה תלויה זירקון (מק'ט 1041)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -653,10 +743,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">לוטוס שחור מנוקד</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1037</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1037</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס שחור מנוקד (מק'ט 1037)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס שחור מנוקד (מק'ט 1037)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -667,10 +759,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">מרקיזה משולשת</div>
-                <div class="product-material">⚪️ טיטניום</div>
-                <div class="product-sku">SKU: 1018</div>
+                <div class="product-meta">
+                    <span>⚪️ טיטניום</span>
+                    <span class="product-sku">SKU: 1018</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזה משולשת (מק'ט 1018)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזה משולשת (מק'ט 1018)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
@@ -681,10 +775,12 @@
             </div>
             <div class="product-info">
                 <div class="product-title">לב משובץ קטן</div>
-                <div class="product-material">🟡 ציפוי זהב</div>
-                <div class="product-sku">SKU: 1068</div>
+                <div class="product-meta">
+                    <span>🟡 ציפוי זהב</span>
+                    <span class="product-sku">SKU: 1068</span>
+                </div>
                 <div class="spacer"></div>
-                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לב משובץ קטן (מק'ט 1068)" class="btn-add-to-cart">רכישה מהירה</a>
+                <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לב משובץ קטן (מק'ט 1068)" class="btn" target="_blank">רכישה מהירה</a>
             </div>
         </div>
 
