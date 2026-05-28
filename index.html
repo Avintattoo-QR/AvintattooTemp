@@ -89,18 +89,61 @@
         @keyframes flow {
             from { background-position: 0 50%, 50% 0; }
             to { background-position: 100% 50%, 50% 100%; }
-        }
-        /* הודעת שיפוצים */
-        .construction-banner {
+        }/* באנר צף - הודעות וקביעת תורים */
+        .sticky-header-banner {
+            position: sticky;
+            top: 0;
+            z-index: 9999; /* מבטיח שזה יישאר מעל כל שאר האתר */
             background-color: #111111;
             color: #d4af37;
             text-align: center;
-            padding: 12px 20px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            padding: 12px 15px;
             border-bottom: 2px solid #d4af37;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .sticky-header-banner .banner-text {
+            font-size: 0.95rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .banner-wa-btn {
+            background-color: #25d366;
+            color: #ffffff !important;
+            padding: 6px 16px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(37, 211, 102, 0.3);
+        }
+
+        .banner-wa-btn:hover {
+            background-color: #1ebe57;
+            transform: scale(1.05);
+        }
+
+        /* התאמה למסכים גדולים (מחשב) */
+        @media (min-width: 768px) {
+            .sticky-header-banner {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 12px 30px;
+            }
+            .sticky-header-banner .banner-text {
+                font-size: 1.1rem;
+            }
+        }
         }
 
         /* --- BUTTONS STYLING --- */
@@ -169,10 +212,14 @@
         }
     </style>
 </head>
-<body>
-    <!-- באנר הודעת שיפוצים -->
-<div class="construction-banner">
-    האתר המלא בשיפוצים 🛠️ בינתיים אתם מוזמנים ליהנות מקולקציית העגילים!
+<body><!-- באנר צף (Sticky) לשיפוצים וקביעת תורים -->
+<div class="sticky-header-banner">
+    <div class="banner-text">
+        האתר בשיפוצים 🛠️ בינתיים אתם מוזמנים ליהנות מקולקציית העגילים!
+    </div>
+    <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לקבוע תור / לברר פרטים נוספים." class="banner-wa-btn" target="_blank">
+        לקביעת תור ופרטים (WhatsApp)
+    </a>
 </div>
 
 <div class="wp-block-group alignfull shop-grid has-black-color has-text-color has-background" id="shop-gallery" style="padding-top:3rem;padding-right:1rem;padding-bottom:3rem;padding-left:1rem; text-align: center;">
