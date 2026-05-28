@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בוטיק פירסינג | Avintattoo</title>
+    
+    <!-- ייבוא פונט מודרני ונקי בדומה לשופיפיי -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===================================
+           RESET & BASE
+           =================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Assistant', sans-serif; /* פונט מודרני ונקי */
+            background-color: #ffffff; 
+            color: #1c1c1c; 
+            overflow-x: hidden; 
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ===================================
+           STICKY ANNOUNCEMENT BAR
+           =================================== */
+        .announcement-bar {
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            background-color: #1c1c1c; /* שחור מט */
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .announcement-bar a.whatsapp-link {
+            color: #25d366;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s ease;
+        }
+
+        .announcement-bar a.whatsapp-link:hover {
+            opacity: 0.8;
+        }
+
+        @media (min-width: 768px) {
+            .announcement-bar {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 12px 40px;
+            }
+        }
+
+        /* ===================================
+           HEADER & TITLE
+           =================================== */
+        .collection-header {
+            text-align: center;
+            padding: 50px 20px 40px;
+        }
+
+        .collection-title {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .collection-description {
+            color: #666666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* ===================================
+           PRODUCT GRID (Shopify Style)
+           =================================== */
+        .page-width {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 30px;
+            }
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            group: product;
+            margin-bottom: 20px;
+        }
+
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            aspect-ratio: 1 / 1;
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        /* אפקט זום יוקרתי בריחוף */
+        .product-card:hover .product-image-container img {
+            transform: scale(1.08);
+        }
+
+        .product-info {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #1c1c1c;
+        }
+
+        .product-material {
+            font-size: 0.9rem;
+            color: #666666;
+            margin-bottom: 5px;
+        }
+
+        .product-sku {
+            font-size: 0.8rem;
+            color: #999999;
+            margin-bottom: 15px;
+            font-family: monospace; /* למראה מק"ט מקצועי */
+        }
+
+        .spacer { flex-grow: 1; }
+
+        /* כפתור הוספה לסל / וואטסאפ */
+        .btn-add-to-cart {
+            display: block;
+            width: 100%;
+            background-color: #1c1c1c; /* שחור שופיפיי */
+            color: #ffffff !important;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #1c1c1c;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #ffffff;
+            color: #1c1c1c !important;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- באנר עליון (Announcement Bar) -->
+<div class="announcement-bar">
+    <div>האתר בשיפוצים 🛠️ בינתיים אתם מוזמנים ליהנות מהקולקציה החדשה</div>
+    <a href="https://api.whatsapp.com/send?phone=972537239660&text=היי אבי, אשמח לקבוע תור / לברר פרטים נוספים." class="whatsapp-link" target="_blank">
+        לקביעת תור ב-WhatsApp: 053-7239660
+    </a>
+</div>
+
+<!-- כותרת האתר -->
+<div class="collection-header">
+    <h1 class="collection-title">קולקציית תכשיטים</h1>
+    <p class="collection-description">תכשיטים ייחודיים בסטנדרט רפואי הגבוה ביותר לסטודיו ולפירסינג.<br>לפרטים והזמנה לחצו על הפריט הרצוי.</p>
+</div>
+
+<!-- גריד מוצרים -->
+<div class="page-width">
+    <div class="product-grid">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1052-d79cd795d798d795d7a1-d7a7d798d79f-d7a2d79d-d7a9d7a8d7a9d7a8d7aa-d7a6d791d7a2-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="לוטוס אבן עם שרשרת">
+            </div>
+            <div class="product-info">
+                <div class="product-title">לוטוס אבן עם שרשרת</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1052</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס אבן עם שרשרת (מק'ט 1052)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1023-d79cd791d7a8d798-d796d7a8d799d7a7d795d79f-d7a7d798d79f-d798d799d798d7a0d799d795d79d.jpg?w=1024" alt="לאברט זירקון">
+            </div>
+            <div class="product-info">
+                <div class="product-title">לאברט זירקון</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1023</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לאברט זירקון (מק'ט 1023)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1071-d7a4d7a8d797-d791d7a8d7a7d799d796d795d7aa-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="פרח מרקיזות">
+            </div>
+            <div class="product-info">
+                <div class="product-title">פרח מרקיזות</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1071</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: פרח מרקיזות (מק'ט 1071)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1054-d798d799d7a4d794-d7a0d795d7a4d79cd7aa-4d79ed79e-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="טיפה נופלת 4מ&quot;מ">
+            </div>
+            <div class="product-info">
+                <div class="product-title">טיפה נופלת 4מ"מ</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1054</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה נופלת (מק'ט 1054)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1070-d7a6d795d7a8d794-d792d790d795d79ed798d7a8d799d7aa-d7a2d79d-d796d799d7a8d7a7d795d7a0d799d79d-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="משובץ גיאומטרי">
+            </div>
+            <div class="product-info">
+                <div class="product-title">משובץ גיאומטרי</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1070</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: משובץ גיאומטרי (מק'ט 1070)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1040-d79ed7a8d7a7d799d796d795d7aa-d791d7a9d795d7a8d794-d7a6d791d7a2-d798d799d798d7a0d799d795d79d.jpg" alt="מרקיזות בשורה">
+            </div>
+            <div class="product-info">
+                <div class="product-title">מרקיזות בשורה</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1040</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזות בשורה (מק'ט 1040)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1050d794d79cd799d7a7d7a1-d79ed795d797d791d790-d7a2d79d-d7a9d7a8d7a9d7a8d7aa-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="הליקס מניפה">
+            </div>
+            <div class="product-info">
+                <div class="product-title">הליקס מניפה</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1050</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: הליקס מניפה (מק'ט 1050)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1022-d7a4d7a8d7a4d7a8-d7a7d798d79f-4d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="פרפר עדין 4מ&quot;מ">
+            </div>
+            <div class="product-info">
+                <div class="product-title">פרפר עדין 4מ"מ</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1022</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: פרפר עדין 4מ&quot;מ (מק'ט 1022)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1051-d798d799d7a4d794-d796d7a8d7a7d795d79f-d798d799d798d7a0d799d795d79d.jpg" alt="טיפה זירקון">
+            </div>
+            <div class="product-info">
+                <div class="product-title">טיפה זירקון</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1051</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה זירקון (מק'ט 1051)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1063-d79ed7a8d7a7d799d796d795d7aa-d791d7a6d795d7a8d794-d79ed7a2d795d799d799d79f-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="מרקיזות זהב">
+            </div>
+            <div class="product-info">
+                <div class="product-title">מרקיזות זהב</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1063</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזות זהב (מק'ט 1063)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1031-d79cd791d7a8d798-d7a0d797d7a9-d798d799d798d7a0d799d795d79d.jpg" alt="לאברט נחש">
+            </div>
+            <div class="product-info">
+                <div class="product-title">לאברט נחש</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1031</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לאברט נחש (מק'ט 1031)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1019-d79cd795d798d795d7a1-d797d79cd7a7-d798d799d798d7a0d799d795d79d.jpg" alt="לוטוס חלק">
+            </div>
+            <div class="product-info">
+                <div class="product-title">לוטוס חלק</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1019</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס חלק (מק'ט 1019)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 13 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1033-d7a2d7a0d7a3-d7a2d79d-d7a9d799d791d795d7a5-d799d7a8d795d7a7-d798d799d798d7a0d799d795d79d.jpg" alt="ענף משובץ ירוק">
+            </div>
+            <div class="product-info">
+                <div class="product-title">ענף משובץ ירוק</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1033</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: ענף משובץ ירוק (מק'ט 1033)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 14 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1016-d7a2d799d792d795d79c-d7a2d79d-d797d7a8d799d798d794-4d79ed79e-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="עיגול זהב חרוט (4 מ&quot;מ)">
+            </div>
+            <div class="product-info">
+                <div class="product-title">עיגול זהב חרוט (4 מ"מ)</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1016</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: עיגול זהב חרוט (4 מ&quot;מ) (מק'ט 1016)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 15 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1034-d7a9d795d7a8d794-d79bd793d795d7a8d799d79d-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="קליקר כדורים">
+            </div>
+            <div class="product-info">
+                <div class="product-title">קליקר כדורים</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1034</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: קליקר כדורים (מק'ט 1034)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 16 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1053-d794d79cd799d7a7d7a1-d7a9d7a8d7a9d7a8d7aa-d7a2d79d-d7a4d7a8d797-d798d799d798d7a0d799d795d79d.jpg" alt="הליקס שרשרת פרח">
+            </div>
+            <div class="product-info">
+                <div class="product-title">הליקס שרשרת פרח</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1053</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: הליקס שרשרת פרח (מק'ט 1053)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 17 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1036-d79ed7a8d7a7d799d796d795d7aa-d791d796d795d799d7aa-d791d799d7a0d795d7a0d799-4d79ed79c-d7a6d791d7a2-d798d799d798d7a0d799d795d79d.jpg" alt="מרקיזה זויות">
+            </div>
+            <div class="product-info">
+                <div class="product-title">מרקיזה זויות</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1036</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזה זית (מק'ט 1036)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 18 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1055-d798d799d7a4d794-d7a0d795d7a4d79cd7aa-4d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="טיפה אופל">
+            </div>
+            <div class="product-info">
+                <div class="product-title">טיפה אופל</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1055</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה אופל (מק'ט 1055)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 19 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1066-d797d7a8d791-d7a7d798d7a0d794-5d79ed79e-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="חרב מיניאטורית">
+            </div>
+            <div class="product-info">
+                <div class="product-title">חרב מיניאטורית</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1066</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: חרב מיניאטורית (מק'ט 1066)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 20 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1021-d79cd795d798d795d7a1-d7a7d798d79f-d7a9d797d795d7a8-d798d799d798d7a0d799d795d79d.jpg" alt="לוטוס אבן שחורה">
+            </div>
+            <div class="product-info">
+                <div class="product-title">לוטוס אבן שחורה</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1021</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס אבן שחורה (מק'ט 1021)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 21 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1020-d796d7a8d7a7d795d79f-d79ed7a2d795d799d79f-d7a7d798d79f-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="מעויין זירקונים">
+            </div>
+            <div class="product-info">
+                <div class="product-title">מעויין זירקונים</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1020</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מעויין זירקונים (מק'ט 1020)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 22 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1042-d796d799d7a8d7a7d795d79f-d7a2d79d-d796d799d7a8d7a7d795d79f-d7aad79cd795d799-d798d799d798d7a0d799d795d79d.jpg" alt="זירקון תלוי">
+            </div>
+            <div class="product-info">
+                <div class="product-title">זירקון תלוי</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1042</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: זירקון תלוי (מק'ט 1042)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 23 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1032-d793d795d791d793d791d79f-d798d799d798d7a0d799d795d79d.jpg" alt="עגיל דובון">
+            </div>
+            <div class="product-info">
+                <div class="product-title">עגיל דובון</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1032</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: עגיל דובון (מק'ט 1032)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 24 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1017-d7a2d799d792d795d79c-d7a2d79d-d797d7a8d799d798d794-4d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="עיגול חרוט (4 מ&quot;מ)">
+            </div>
+            <div class="product-info">
+                <div class="product-title">עיגול חרוט (4 מ"מ)</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1017</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: עיגול חרוט (4 מ&quot;מ) (מק'ט 1017)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 25 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1038-d7a9d795d7a8d794-5-d796d799d7a8d7a7d795d7a0d799d79d-d798d799d798d7a0d799d795d79d.jpg" alt="שורה 5 זירקונים">
+            </div>
+            <div class="product-info">
+                <div class="product-title">שורה 5 זירקונים</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1038</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: שורה 5 זירקונים (מק'ט 1038)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 26 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1015-d798d799d7a4d794-d7a9d797d795d7a8d794-3d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="טיפה שחורה (3 מ&quot;מ)">
+            </div>
+            <div class="product-info">
+                <div class="product-title">טיפה שחורה (3 מ"מ)</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1015</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה שחורה (3 מ&quot;מ) (מק'ט 1015)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 27 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1030-d7a0d797d7a9-d7a2d79d-d793d795d792d79ed794-d798d799d798d7a0d799d795d79d-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="נחש מעוצב">
+            </div>
+            <div class="product-info">
+                <div class="product-title">נחש מעוצב</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1030</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: נחש מעוצב (מק'ט 1030)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 28 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1024-d796d799d7a8d7a7d795d79f-d792d795d793d79c-3.5d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="זירקון סוליטר (3.5 מ&quot;מ)">
+            </div>
+            <div class="product-info">
+                <div class="product-title">זירקון סוליטר (3.5 מ"מ)</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1024</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: זירקון סוליטר (3.5 מ&quot;מ) (מק'ט 1024)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 29 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1069-d7a4d7a8d7a4d7a8-d7a2d79d-d796d7a8d7a7d795d7a0d799d79d-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="פרפר זירקונים">
+            </div>
+            <div class="product-info">
+                <div class="product-title">פרפר זירקונים</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1069</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: פרפר זירקונים (מק'ט 1069)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 30 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1039-d7a9d795d7a8d794-d796d799d7a8d7a7d795d7a0d799d79d-d793d7a7d794-d798d799d798d7a0d799d795d79d.jpg" alt="שורה דקה משובצת">
+            </div>
+            <div class="product-info">
+                <div class="product-title">שורה דקה משובצת</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1039</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: שורה דקה משובצת (מק'ט 1039)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 31 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1041-d798d799d7a4d794-d7aad79cd795d799d794-d796d7a8d7a7d795d79f-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="טיפה תלויה זירקון">
+            </div>
+            <div class="product-info">
+                <div class="product-title">טיפה תלויה זירקון</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1041</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: טיפה תלויה זירקון (מק'ט 1041)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 32 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1037-d79cd795d798d795d7a1-d7a9d797d795d7a8-d7a2d79d-d7a0d7a7d795d793d794-d798d799d798d7a0d799d795d79d.jpg" alt="לוטוס שחור מנוקד">
+            </div>
+            <div class="product-info">
+                <div class="product-title">לוטוס שחור מנוקד</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1037</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס שחור מנוקד (מק'ט 1037)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 33 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1018-d79ed7a8d7a7d799d796d794-d790d79d-d7a9d79cd795d7a9d794-d79ed79cd791d7a0d799d79d-8d79ed79e.jpg" alt="מרקיזה משולשת">
+            </div>
+            <div class="product-info">
+                <div class="product-title">מרקיזה משולשת</div>
+                <div class="product-material">⚪️ טיטניום</div>
+                <div class="product-sku">SKU: 1018</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזה משולשת (מק'ט 1018)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+        <!-- Product 34 -->
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1068-d79cd791-d79ed7a9d795d791d7a5-d796d799d7a8d7a7d795d7a0d799d79d-d7a7d798d79f-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="לב משובץ קטן">
+            </div>
+            <div class="product-info">
+                <div class="product-title">לב משובץ קטן</div>
+                <div class="product-material">🟡 ציפוי זהב</div>
+                <div class="product-sku">SKU: 1068</div>
+                <div class="spacer"></div>
+                <a href="https://api.whatsapp.com/send?phone=9720537239660&text=היי אבי, אשמח לברר אם קיים במלאי: לב משובץ קטן (מק'ט 1068)" class="btn-add-to-cart">רכישה מהירה</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
