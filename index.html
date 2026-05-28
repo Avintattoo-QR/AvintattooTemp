@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בוטיק פירסינג בסטודיו</title>
+    <style>
+        /* ===================================
+           CSS RESET & WORDPRESS POLYFILLS
+           (הגדרות בסיס שמחליפות את מערכת וורדפרס)
+           =================================== */
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; overflow-x: hidden; }
+        img { max-width: 100%; height: auto; display: block; }
+        figure { margin: 0; }
+        a { text-decoration: none; }
+        p, h2, h5 { margin-top: 0; }
+        
+        .has-text-align-center { text-align: center; }
+        .alignfull { width: 100%; }
+        .alignwide { max-width: 1200px; margin: 0 auto; }
+        .wp-block-buttons { display: flex; justify-content: center; margin-top: 10px; }
+        .wp-block-button { width: 100%; display: flex; justify-content: center; }
+        .wp-block-button__link { display: inline-block; text-align: center; width: 100%; box-sizing: border-box; }
+        .is-style-rounded img { border-radius: 8px; }
+
+        /*
+         * ===================================
+         *  Avintattoo - Master Stylesheet
+         *  Version: 26.9 (Extreme Native Controls Fix)
+         *  Theme: Gold, Black & Clean White
+         *  Font: Courier New
+         * ===================================
+        */
+        /* --- 1. Global Styles & Typography --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace !important;
+            background-color: #ffffff;
+            color: #111111;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Courier New', Courier, monospace !important;
+            color: #111111;
+            text-shadow: none;
+            font-weight: bold;
+        }
+
+        .section-title {
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #111111;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: #d4af37;
+            margin: 10px auto 0;
+        }
+
+        .wp-block-group.alignfull.has-background {
+            position: relative;
+            z-index: 1;
+            background-color: #f9f9f9 !important; 
+        }
+
+        .wp-block-group.alignfull.has-background::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.05), transparent 40%), radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.03), transparent 40%);
+            animation: flow 20s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes flow {
+            from { background-position: 0 50%, 50% 0; }
+            to { background-position: 100% 50%, 50% 100%; }
+        }
+
+        /* --- BUTTONS STYLING --- */
+        .wp-block-button__link {
+            font-family: 'Courier New', Courier, monospace !important;
+            transition: all .3s ease;
+            background-color: #111111 !important;
+            color: #ffffff !important;
+            font-weight: bold !important;
+            border: none !important;
+            text-transform: uppercase;
+        }
+
+        .wp-block-button__link:hover {
+            transform: scale(1.03);
+            background-color: #d4af37 !important;
+            color: #ffffff !important;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* --- Shop & Boutique Engine --- */
+        .shop-grid .wp-block-columns {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 15px !important;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 781px) {
+            .shop-grid .wp-block-columns {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            transition: all .3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            border-color: #d4af37 !important;
+        }
+
+        .product-material {
+            color: #555555;
+            font-size: .85rem;
+        }
+
+        .product-card .wp-block-button__link {
+            background-color: #111111 !important;
+        }
+
+        .product-card .wp-block-button__link:hover {
+            background-color: #d4af37 !important;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wp-block-group alignfull shop-grid has-black-color has-text-color has-background" id="shop-gallery" style="padding-top:3rem;padding-right:1rem;padding-bottom:3rem;padding-left:1rem; text-align: center;">
+
+    <h2 class="wp-block-heading has-text-align-center section-title has-black-color has-text-color" style="font-size:2.5rem; margin-top:0;">בוטיק פירסינג בסטודיו</h2>
+    
+    <p class="has-text-align-center has-text-color has-medium-font-size" style="color:#555555">קולקציית תכשיטים ייחודית בסטנדרט רפואי<br>לפרטים והזמנה ב-WhatsApp לחצו על הפריט</p>
+    
+    <div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
+
+    <!-- ROW 1 -->
+    <div class="wp-block-columns alignwide">
+        <!-- Product 1 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1052-d79cd795d798d795d7a1-d7a7d798d79f-d7a2d79d-d7a9d7a8d7a9d7a8d7aa-d7a6d791d7a2-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="לוטוס אבן עם שרשרת" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">לוטוס אבן עם שרשרת</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1052</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס אבן עם שרשרת (מק'ט 1052)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1023-d79cd791d7a8d798-d796d7a8d799d7a7d795d79f-d7a7d798d79f-d798d799d798d7a0d799d795d79d.jpg?w=1024" alt="" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">לאברט זירקון</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1023</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: לאברט זירקון (מק'ט 1023)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1071-d7a4d7a8d797-d791d7a8d7a7d799d796d795d7aa-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="פרח מרקיזות" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">פרח מרקיזות</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1071</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: פרח מרקיזות (מק'ט 1071)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1054-d798d799d7a4d794-d7a0d795d7a4d79cd7aa-4d79ed79e-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="טיפה נופלת 4מ&quot;מ" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">טיפה נופלת 4מ"מ</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1054</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: טיפה נופלת (מק'ט 1054)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="wp-block-columns alignwide">
+        <!-- Product 5 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1070-d7a6d795d7a8d794-d792d790d795d79ed798d7a8d799d7aa-d7a2d79d-d796d799d7a8d7a7d795d7a0d799d79d-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="משובץ גיאומטרי" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">משובץ גיאומטרי</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1070</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: משובץ גיאומטרי (מק'ט 1070)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1040-d79ed7a8d7a7d799d796d795d7aa-d791d7a9d795d7a8d794-d7a6d791d7a2-d798d799d798d7a0d799d795d79d.jpg" alt="מרקיזות בשורה" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">מרקיזות בשורה</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1040</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזות בשורה (מק'ט 1040)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1050d794d79cd799d7a7d7a1-d79ed795d797d791d790-d7a2d79d-d7a9d7a8d7a9d7a8d7aa-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="הליקס מניפה" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">הליקס מניפה</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1050</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: הליקס מניפה (מק'ט 1050)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1022-d7a4d7a8d7a4d7a8-d7a7d798d79f-4d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="פרפר עדין 4מ&quot;מ" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">פרפר עדין 4מ"מ</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1022</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: פרפר עדין 4מ&quot;מ (מק'ט 1022)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 3 -->
+    <div class="wp-block-columns alignwide">
+        <!-- Product 9 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1051-d798d799d7a4d794-d796d7a8d7a7d795d79f-d798d799d798d7a0d799d795d79d.jpg" alt="טיפה זירקון" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">טיפה זירקון</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1051</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: טיפה זירקון (מק'ט 1051)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1063-d79ed7a8d7a7d799d796d795d7aa-d791d7a6d795d7a8d794-d79ed7a2d795d799d799d79f-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="מרקיזות זהב" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">מרקיזות זהב</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1063</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזות זהב (מק'ט 1063)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1031-d79cd791d7a8d798-d7a0d797d7a9-d798d799d798d7a0d799d795d79d.jpg" alt="לאברט נחש" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">לאברט נחש</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1031</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: לאברט נחש (מק'ט 1031)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1019-d79cd795d798d795d7a1-d797d79cd7a7-d798d799d798d7a0d799d795d79d.jpg" alt="לוטוס חלק" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">לוטוס חלק</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1019</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס חלק (מק'ט 1019)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 4 -->
+    <div class="wp-block-columns alignwide">
+        <!-- Product 13 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1033-d7a2d7a0d7a3-d7a2d79d-d7a9d799d791d795d7a5-d799d7a8d795d7a7-d798d799d798d7a0d799d795d79d.jpg" alt="ענף משובץ ירוק" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">ענף משובץ ירוק</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1033</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: ענף משובץ ירוק (מק'ט 1033)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 14 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1016-d7a2d799d792d795d79c-d7a2d79d-d797d7a8d799d798d794-4d79ed79e-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="עיגול זהב חרוט (4 מ&quot;מ)" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">עיגול זהב חרוט (4 מ"מ)</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1016</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: עיגול זהב חרוט (4 מ&quot;מ) (מק'ט 1016)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 15 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1034-d7a9d795d7a8d794-d79bd793d795d7a8d799d79d-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="קליקר כדורים" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">קליקר כדורים</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1034</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: קליקר כדורים (מק'ט 1034)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 16 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1053-d794d79cd799d7a7d7a1-d7a9d7a8d7a9d7a8d7aa-d7a2d79d-d7a4d7a8d797-d798d799d798d7a0d799d795d79d.jpg" alt="הליקס שרשרת פרח" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">הליקס שרשרת פרח</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1053</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: הליקס שרשרת פרח (מק'ט 1053)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 5 -->
+    <div class="wp-block-columns alignwide">
+        <!-- Product 17 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-full is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1036-d79ed7a8d7a7d799d796d795d7aa-d791d796d795d799d7aa-d791d799d7a0d795d7a0d799-4d79ed79c-d7a6d791d7a2-d798d799d798d7a0d799d795d79d.jpg" alt="" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">מרקיזה זויות</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1036</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזה זית (מק'ט 1036)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 18 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1055-d798d799d7a4d794-d7a0d795d7a4d79cd7aa-4d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="טיפה אופל" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">טיפה אופל</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1055</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: טיפה אופל (מק'ט 1055)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 19 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1066-d797d7a8d791-d7a7d798d7a0d794-5d79ed79e-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="חרב מיניאטורית" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">חרב מיניאטורית</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1066</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: חרב מיניאטורית (מק'ט 1066)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 20 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1021-d79cd795d798d795d7a1-d7a7d798d79f-d7a9d797d795d7a8-d798d799d798d7a0d799d795d79d.jpg" alt="לוטוס אבן שחורה" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">לוטוס אבן שחורה</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1021</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס אבן שחורה (מק'ט 1021)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 6 -->
+    <div class="wp-block-columns alignwide">
+        <!-- Product 21 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1020-d796d7a8d7a7d795d79f-d79ed7a2d795d799d79f-d7a7d798d79f-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="מעויין זירקונים" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">מעויין זירקונים</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1020</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: מעויין זירקונים (מק'ט 1020)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 22 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1042-d796d799d7a8d7a7d795d79f-d7a2d79d-d796d799d7a8d7a7d795d79f-d7aad79cd795d799-d798d799d798d7a0d799d795d79d.jpg" alt="זירקון תלוי" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">זירקון תלוי</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1042</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: זירקון תלוי (מק'ט 1042)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 23 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1032-d793d795d791d793d791d79f-d798d799d798d7a0d799d795d79d.jpg" alt="עגיל דובון" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">עגיל דובון</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1032</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: עגיל דובון (מק'ט 1032)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 24 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1017-d7a2d799d792d795d79c-d7a2d79d-d797d7a8d799d798d794-4d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="עיגול חרוט (4 מ&quot;מ)" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">עיגול חרוט (4 מ"מ)</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1017</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: עיגול חרוט (4 מ&quot;מ) (מק'ט 1017)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 7 -->
+    <div class="wp-block-columns alignwide">
+        <!-- Product 25 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1038-d7a9d795d7a8d794-5-d796d799d7a8d7a7d795d7a0d799d79d-d798d799d798d7a0d799d795d79d.jpg" alt="שורה 5 זירקונים" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">שורה 5 זירקונים</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1038</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: שורה 5 זירקונים (מק'ט 1038)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 26 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1015-d798d799d7a4d794-d7a9d797d795d7a8d794-3d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="טיפה שחורה (3 מ&quot;מ)" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">טיפה שחורה (3 מ"מ)</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1015</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: טיפה שחורה (3 מ&quot;מ) (מק'ט 1015)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 27 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1030-d7a0d797d7a9-d7a2d79d-d793d795d792d79ed794-d798d799d798d7a0d799d795d79d-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="נחש מעוצב" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">נחש מעוצב</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1030</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: נחש מעוצב (מק'ט 1030)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 28 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1024-d796d799d7a8d7a7d795d79f-d792d795d793d79c-3.5d79ed79e-d798d799d798d7a0d799d795d79d.jpg" alt="זירקון סוליטר (3.5 מ&quot;מ)" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">זירקון סוליטר (3.5 מ"מ)</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1024</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: זירקון סוליטר (3.5 מ&quot;מ) (מק'ט 1024)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 8 -->
+    <div class="wp-block-columns alignwide">
+        <!-- Product 29 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1069-d7a4d7a8d7a4d7a8-d7a2d79d-d796d7a8d7a7d795d7a0d799d79d-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="פרפר זירקונים" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">פרפר זירקונים</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1069</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: פרפר זירקונים (מק'ט 1069)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 30 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-full is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1039-d7a9d795d7a8d794-d796d799d7a8d7a7d795d7a0d799d79d-d793d7a7d794-d798d799d798d7a0d799d795d79d.jpg" alt="" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">שורה דקה משובצת</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1039</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: שורה דקה משובצת (מק'ט 1039)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 31 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1041-d798d799d7a4d794-d7aad79cd795d799d794-d796d7a8d7a7d795d79f-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="טיפה תלויה זירקון" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">טיפה תלויה זירקון</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1041</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: טיפה תלויה זירקון (מק'ט 1041)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 32 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1037-d79cd795d798d795d7a1-d7a9d797d795d7a8-d7a2d79d-d7a0d7a7d795d793d794-d798d799d798d7a0d799d795d79d.jpg" alt="לוטוס שחור מנוקד" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">לוטוס שחור מנוקד</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1037</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: לוטוס שחור מנוקד (מק'ט 1037)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 9 -->
+    <div class="wp-block-columns alignwide">
+        <!-- Product 33 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1018-d79ed7a8d7a7d799d796d794-d790d79d-d7a9d79cd795d7a9d794-d79ed79cd791d7a0d799d79d-8d79ed79e.jpg" alt="מרקיזה משולשת" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">מרקיזה משולשת</h5>
+            <p class="has-text-align-center product-material has-text-color">⚪️ טיטניום</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1018</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: מרקיזה משולשת (מק'ט 1018)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+
+        <!-- Product 34 -->
+        <div class="wp-block-column product-card" style="border-style:solid;border-width:1px;border-radius:8px;padding:10px;">
+            <div class="wp-block-group product-image-wrapper">
+                <figure class="wp-block-image size-large is-style-rounded"><img src="https://avintattoo.com/wp-content/uploads/2025/12/d79ed7a7d798-1068-d79cd791-d79ed7a9d795d791d7a5-d796d799d7a8d7a7d795d7a0d799d79d-d7a7d798d79f-d7a6d799d7a4d795d799-d796d794d791.jpg" alt="לב משובץ קטן" style="aspect-ratio:1;object-fit:cover" /></figure>
+            </div>
+            <h5 class="wp-block-heading has-text-align-center has-text-color" style="color:#111111;font-size:1rem;font-weight:600;margin-top:10px;">לב משובץ קטן</h5>
+            <p class="has-text-align-center product-material has-text-color">🟡 ציפוי זהב</p>
+            <p class="has-text-align-center has-text-color has-small-font-size" style="color:#555555;margin-bottom:10px">מק"ט: 1068</p>
+            <div class="wp-block-buttons">
+                <div class="wp-block-button has-small-font-size"><a class="wp-block-button__link" href="https://api.whatsapp.com/send?phone=9720537239660&amp;text=היי אבי, אשמח לברר אם קיים במלאי: לב משובץ קטן (מק'ט 1068)" style="border-radius:5px;padding:8px 0;">הזמנה</a></div>
+            </div>
+        </div>
+        
+        <!-- Empty Columns to maintain grid layout -->
+        <div class="wp-block-column"></div>
+        <div class="wp-block-column"></div>
+    </div>
+</div>
+
+</body>
+</html>
